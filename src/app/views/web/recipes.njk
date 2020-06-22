@@ -1,0 +1,39 @@
+{% extends "web/layout.njk" %}
+{% block head %}
+  <title>Receitas - Foodfy</title>
+{% endblock %}
+{% block content %}
+
+  <section class="adm">
+    <p class="cards-section-title">Receitas</p>
+    <div class="cards">
+      {% for recipe in recipes %}
+        <div class="card" id="{{recipes.indexOf(recipe)}}">
+          <div class="card-image-container">
+            <a href="/recipes/{{recipe.id}}"> <img src="{{recipe.photo}}" alt="{{recipe.title}}"/></a>
+          </div>
+          <div class="card-content">
+            <p class="card-title">{{recipe.title}}</p>
+            <p class="card-subtitle">por
+              {{recipe.chef_name}}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="pagination" data-page="{{ pagination.page }}" data-total="{{ pagination.total }}" data-filter="{{ filter }}"></div>
+
+  </section>
+
+  <script>
+   const cards = document.querySelectorAll('.card')
+
+  for (let card of cards) {
+     card.addEventListener("click", function () {
+         const recipeIndex = card.getAttribute("id");
+        window.location.href = "recipes/" + recipeIndex.toString();
+     })
+  };
+  </script>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/styles/styles.css"/>
+    <link rel="stylesheet" href="/styles/user.css"/>
+    <link rel="stylesheet" href="/styles/messages.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    {% block head %}
+      <title>Foodfy</title>
+    {% endblock %}
+  </head>
+  <body>
+   {% include "parts/messages.njk" %}
+        {% block header %}
+       
+    <header class="adm">
+      <div class="header-adm">
+          <a href="/admin"><img src="/logo2.png" alt="Foodfy"/></a>
+          <div class="admin-links">
+            <a class="link" href="/admin/recipes">Receitas</a>
+            <a class="link" href="/admin/chefs">Chefs</a>
+            <a class="link" href="/admin/users">Usuários</a>
+          </div>
+          <div class="user-options">
+    
+        <form id="logout" method="POST" action="/admin/users/logout">
+          <a class="link active" onclick="document.getElementById('logout').submit();">Sair</a>
+        </form>
+      </div>
+      </div>
+    </header>
+    {% endblock %}
+    {% block content %}{% endblock %}
+
+    <script src="/scripts.js"></script>
+  </body>
+</html>

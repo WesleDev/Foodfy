@@ -1,0 +1,88 @@
+{% extends "web/layout.njk" %}
+{% block head %}
+  <title>{{item.title}}
+    - Foodfy</title>
+{% endblock %}
+{% block content %}
+  <div class="recipe-wrapper">
+    <div class="gallery">
+      <div class="highlight recipe-image">
+          {% if not files[0] %}
+            <img src="http://placehold.it/500x500?text=PRODUTO SEM FOTO"/>
+          {% else %}
+            <img src="{{ files[0].file_path }}" alt="{{ files[0].name }}" onclick="Lightbox.open()"/>
+          {% endif %}
+
+          <div class="lightbox-target">
+            <img src="{{ files[0].file_path }}" alt="{{ files[0].name }}"/>
+            <a href="#" class="lightbox-close" onclick="Lightbox.close()">
+              <i class="material-icons">close</i>
+            </a>
+          </div>
+      </div>
+      <div class="gallery-preview">
+        {% for image in files %}
+          <img src="{{ image.file_path }}" alt="{{recipe.title}}" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
+        {% endfor %}
+      </div>
+      <div class="recipe-content">
+        <p class="recipe-title">{{recipe.title}}</p>
+        <p class="recipe-author">por
+          {{recipe.chef_name}}</p>
+        <br>
+        <div class="recipe-section">
+          <p class="recipe-subtitle">Ingredientes<span class="recipe-expand">MOSTRAR</span></p>
+          <div class="recipe-description">
+            <ul>
+              {% for recipe in recipe.ingredients %}
+                <li>{{recipe}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="recipe-section">
+          <p class="recipe-subtitle">Modo de preparo<span class="recipe-expand">MOSTRAR</span></p>
+          <div class="recipe-description">
+            <ol>
+              {% for recipe in recipe.preparation %}
+                <li>{{recipe}}</li>
+              {% endfor %}
+            </ol>
+          </div>
+        </div>
+        <div class="recipe-section">
+          <p class="recipe-subtitle">Informações adicionais<span class="recipe-expand">MOSTRAR</span></p>
+          <div class="recipe-description">
+            <p>{{recipe.information}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const recipe_sections = document.querySelectorAll(".recipe-section")
+    for (let recipe_section of recipe_sections) {
+      const section = recipe_section.querySelector(".recipe-description")
+      recipe_section
+        .querySelector(".recipe-expand")
+        .addEventListener("click", function () {
+          if (section.classList.contains("active") === true) {
+            section
+              .classList
+              .remove("active")
+            recipe_section
+              .querySelector(".recipe-expand")
+              .innerHTML = "MOSTRAR"
+          } else {
+            section
+              .classList
+              .add("active")
+            recipe_section
+              .querySelector(".recipe-expand")
+              .innerHTML = "ESCONDER"
+          }
+        })
+    }
+  </script>
+{% endblock %}

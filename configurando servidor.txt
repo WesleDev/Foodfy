@@ -1,0 +1,28 @@
+configurando servidor 
+
+step 1 - iniciar node : npm init -y
+step 2 - instalar dependencia express: npm install express
+step 3 - configurar server.js enxuto: 
+const express = require('express')
+const server = express()
+
+server.listen(5000, function() {
+    console.log("server ok")
+})
+
+step 4 - criando rotas:
+server.get("/", function (req, res) {
+    return res.send("Hi!")
+})
+
+step 5 - instalando nodemon como dependencia de desenvolvimento: npm install -D nodemon ///// alterar o package.json para "start": "nodemon server.js"
+step 6 - template engine, instalando nunjucks: npm install nunjucks
+step 7 - importanto nunjucks para o server.js: const nunjucks = require('nunjucks')
+step 8 - configurar template engine: 
+server.use(express.static('public'))
+
+server.set("view engine", "html")
+
+nunjucks.configure("views", {
+    express: server
+})

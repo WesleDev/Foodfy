@@ -1,0 +1,86 @@
+{% extends "admin/layout.njk" %}
+{% block head %}
+  <title>Receitas - Foodfy</title>
+{% endblock %}
+{% block content %}
+
+  <section class="adm">
+
+    <form method="POST" action="/admin/recipes?_method=PUT">
+
+      <div class="form-header">
+        <h3>Receita:
+          {{recipe.title}}</h3>
+        <div class="actions">
+          <a class="button" href="/admin/recipes/{{ recipe.id }}/edit">
+            Editar receita
+          </a>
+        </div>
+      </div>
+
+      <div class="recipe-wrapper">
+        <div class="gallery">
+          <div class="highlight recipe-image">
+            {% if not files[0] %}
+              <img src="http://placehold.it/500x500?text=PRODUTO SEM FOTO"/>
+            {% else %}
+              <img src="{{ files[0].file_path }}" alt="{{ files[0].name }}" onclick="Lightbox.open()"/>
+            {% endif %}
+      
+            <div class="lightbox-target">
+                <img src="{{ files[0].file_path }}" alt="{{ files[0].name }}"/>
+                <a href="#" class="lightbox-close" onclick="Lightbox.close()">
+                  <i class="material-icons">close</i>
+                </a>
+            </div>
+          </div>
+          <div class="gallery-preview">
+            {% for image in files %}
+              <img src="{{ image.file_path }}" alt="{{recipe.title}}" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="recipe-content">
+          <p class="recipe-title">{{recipe.title}}</p>
+          <p class="recipe-author">por
+            {{recipe.chef_name}}</p>
+          <br>
+          <div class="recipe-section">
+            <p class="recipe-subtitle">Ingredientes</p>
+            <div class="recipe-description active">
+              <ul>
+                {% for recipe in recipe.ingredients %}
+                  <p>-
+                    {{recipe}}</p>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="recipe-section">
+            <p class="recipe-subtitle">Modo de preparo</p>
+            <div class="recipe-description active">
+              <ol>
+                {% for recipe in recipe.preparation %}
+                  <p>-
+                    {{recipe}}</p>
+                {% endfor %}
+              </ol>
+            </div>
+          </div>
+          <div class="recipe-section">
+            <p class="recipe-subtitle">Informações adicionais</p>
+            <div class="recipe-description active">
+              <p style="white-space: pre-line">{{recipe.information}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </section>
+  <script src="/scripts.js"></script>
+
+  
+
+{% endblock %}
