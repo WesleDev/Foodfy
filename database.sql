@@ -1,3 +1,7 @@
+-- create database with name foodfy
+CREATE DATABASE foodfy;
+
+--create tables 
 CREATE TABLE "chefs" (
   "id" SERIAL PRIMARY KEY,
   "name" text NOT NULL,
@@ -5,6 +9,7 @@ CREATE TABLE "chefs" (
   "created_at" timestamp DEFAULT(now()),
   "updated_at" timestamp DEFAULT(now())
 );
+
 ALTER TABLE "chefs" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id") ON DELETE CASCADE;
 
 CREATE TABLE "users" (
