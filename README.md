@@ -38,7 +38,7 @@ Projeto do desafio final do bootcamp LaunchBase, da Rocketseat.
 1. Executar comando ```npm install``` no terminal;
 1. Executar as linhas do arquivo **database.sql** no Postbird;
 1. Configure o arquivo **db.js** na pasta "*src/config*" com suas informações do Postbird;
-1. Configurar o arquivo **mailer.js** na pasta "*src/config*" com suas informações do MailTrap;
+1. Configurar o arquivo **mailer.js** na pasta "*src/lib/mailer.js*" com suas informações do MailTrap;
 1. Executar o comando ```node seeds.js``` no terminal;
 1. Executar o comando ```npm start``` no terminal.
 
