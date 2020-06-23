@@ -4,7 +4,7 @@
 
 Site de Receitas Foodfy.
 
-Projeto do desafio final do bootcamp Launchstore, da Rocketseat.
+Projeto do desafio final do bootcamp LaunchBase, da Rocketseat.
 
 ### Tecnologias
 
