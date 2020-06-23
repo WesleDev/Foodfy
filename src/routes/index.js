@@ -1,6 +1,6 @@
 const express = require('express')
 const routes = express.Router()
-const web = require("../app/controllers/web")
+const web = require("../app/controllers/WebController")
 
 const admin = require('./admin')
 
