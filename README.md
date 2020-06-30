@@ -41,6 +41,7 @@ Projeto do desafio final do bootcamp LaunchBase, da Rocketseat.
 1. Configurar o arquivo **mailer.js** na pasta "*src/lib*" com suas informações do MailTrap;
 1. Executar o comando ```node seeds.js``` no terminal;
 1. Executar o comando ```npm start``` no terminal.
+1. Acessar a rota ```http://localhost:5000``` no navegador.
 
 ## Observações
 
